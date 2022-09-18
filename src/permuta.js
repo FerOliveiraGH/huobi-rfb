@@ -44,7 +44,7 @@ async function permuta(symbol1 = 'ETH', symbol2 = 'BUSD', year = 2022, month = 8
                     delivered_coin_quantity: element.quoteQty,
                 }
 
-                taxEx.addPermutationOperation(trade);
+                await taxEx.addPermutationOperation(trade);
             } else if (!element.isBuyer) {
                 trade = {
                     date: `${dateTrade.getDate()}/${dateTrade.getMonth()+1}/${dateTrade.getFullYear()}`,
@@ -57,12 +57,12 @@ async function permuta(symbol1 = 'ETH', symbol2 = 'BUSD', year = 2022, month = 8
                     delivered_coin_quantity: element.qty,
                 }
 
-                taxEx.addPermutationOperation(trade);
+                await taxEx.addPermutationOperation(trade);
             }
         }
     }
 
-    return taxEx.exportFile();
+    return await taxEx.exportFile();
 }
 
 module.exports = { permuta }

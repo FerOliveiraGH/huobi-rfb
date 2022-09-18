@@ -44,7 +44,7 @@ async function compraVenda(symbol = 'ETH', year = 2022, month = 8) {
                     coin_quantity: element.qty,
                 }
 
-                taxEx.addBuyOperation(trade);
+                await taxEx.addBuyOperation(trade);
             } else if (!element.isBuyer) {
                 trade = {
                     date: `${dateTrade.getDate()}/${dateTrade.getMonth()+1}/${dateTrade.getFullYear()}`,
@@ -56,12 +56,12 @@ async function compraVenda(symbol = 'ETH', year = 2022, month = 8) {
                     coin_quantity: element.qty,
                 }
 
-                taxEx.addSellOperation(trade);
+                await taxEx.addSellOperation(trade);
             }
         }
     }
 
-   return taxEx.exportFile();
+   return await taxEx.exportFile();
 }
 
 module.exports  = { compraVenda }
