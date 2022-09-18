@@ -36,7 +36,7 @@ async function compraVenda(symbol = 'ETH', dateStart = new Date(), dateEnd = new
                     brl_value: element.quoteQty,
                     brl_fees: element.commission,
 
-                    coin_symbol: symbol1,
+                    coin_symbol: symbol,
                     coin_quantity: element.qty,
                 }
 
@@ -48,7 +48,7 @@ async function compraVenda(symbol = 'ETH', dateStart = new Date(), dateEnd = new
                     brl_value: element.quoteQty,
                     brl_fees: element.commission,
 
-                    coin_symbol: symbol1,
+                    coin_symbol: symbol,
                     coin_quantity: element.qty,
                 }
 
