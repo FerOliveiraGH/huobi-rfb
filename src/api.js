@@ -25,7 +25,7 @@ async function privateCall(path, data = {}, method = 'GET') {
     const recvWindow = 60000;//máximo permitido, default 5000
 
     const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-    await delay(500);
+    await delay(200);
 
     const signature = crypto
         .createHmac('sha256', apiSecret)

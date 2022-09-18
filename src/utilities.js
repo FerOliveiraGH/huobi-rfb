@@ -1,12 +1,15 @@
-const fs = require("fs/promises");
+const fsPromises = require("fs/promises");
+const fs = require("fs");
 
 
 async function saveRfbFile(year, month, data) {
     try {
         let name = await getNameFile(year, month);
         let folder = 'rfbs';
-        await fs.mkdir(folder);
-        await fs.writeFile(`${folder}/${name}.rfb`, data)
+        if (!fs.existsSync(folder)){
+            await fsPromises.mkdir(folder);
+        }
+        await fsPromises.writeFile(`${folder}/${name}.rfb`, data)
     } catch (err) {
         console.log(err);
     }

@@ -14,9 +14,9 @@ async function load() {
 
     let file = "";
 
-    file += await compraVenda('ETH', 'BRL', dateStart, dateEnd);
-    file += await compraVenda('BTC', 'BRL', dateStart, dateEnd);
-    file += await compraVenda('BUSD', 'BRL', dateStart, dateEnd);
+    file += await compraVenda('ETH', dateStart, dateEnd);
+    file += await compraVenda('BTC', dateStart, dateEnd);
+    file += await compraVenda('BUSD', dateStart, dateEnd);
     file += await permuta('ETH', 'BUSD', dateStart, dateEnd)
     file += await permuta('BTC', 'BUSD', dateStart, dateEnd)
 
@@ -25,6 +25,7 @@ async function load() {
 
 if (require.main === module) {
     console.log('Process start.');
+    console.log('Wait a moment...');
 
     load().then(() => {
         console.log('Process end.');

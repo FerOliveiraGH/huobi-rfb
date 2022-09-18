@@ -4,7 +4,7 @@ const Exchange = require('exchange-exterior-rfb').default;
 const { myTrades } = require('./api.js');
 
 
-async function compraVenda(symbol1 = 'ETH', symbol2 = 'BRL', dateStart = new Date(), dateEnd = new Date()) {
+async function compraVenda(symbol = 'ETH', dateStart = new Date(), dateEnd = new Date()) {
     const taxEx = new Exchange({
         exchange_name: 'Binance', // Exchange Name
         exchange_country: 'US', // Exchange CNPJ
@@ -13,6 +13,7 @@ async function compraVenda(symbol1 = 'ETH', symbol2 = 'BRL', dateStart = new Dat
 
     let startDay = dateStart.getDate();
     let endDay = dateEnd.getDate();
+    let symbol2 = 'BRL'
 
     for (let i=startDay; i <= endDay; i++) {
         let dateTradesStart = new Date(dateStart.getFullYear(), dateStart.getMonth(), i, 0, 0, 0);
@@ -20,7 +21,7 @@ async function compraVenda(symbol1 = 'ETH', symbol2 = 'BRL', dateStart = new Dat
         dateTradesStart = dateTradesStart.getTime();
         dateTradesEnd = dateTradesEnd.getTime();
 
-        let pair = symbol1.toUpperCase()+symbol2.toUpperCase();
+        let pair = symbol.toUpperCase()+symbol2.toUpperCase();
 
         let response = await myTrades(pair, dateTradesStart, dateTradesEnd);
 
