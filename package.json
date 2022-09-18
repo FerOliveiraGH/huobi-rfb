@@ -1,0 +1,13 @@
+{
+  "name": "binance-rfb",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv-safe": "^8.2.0",
+    "exchange-exterior-rfb": "feroliveiragh/exchange-exterior-rfb#master"
+  }
+}
