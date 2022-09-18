@@ -14,7 +14,18 @@ async function myTrades(symbol, startTime, endTime, limit = null) {
     if (endTime) data.endTime = endTime;
     if (limit) data.limit = limit;
 
-    return await privateCall('/v3/myTrades', data);
+    return await privateCall('/api/v3/myTrades', data);
+}
+
+async function myDeposits(symbol, startTime, endTime, limit = null) {
+    const data = {};
+
+    // if (symbol) data.symbol = symbol;
+    if (startTime) data.startTime = startTime;
+    if (endTime) data.endTime = endTime;
+    // if (limit) data.limit = limit;
+
+    return await privateCall('/sapi/v1/capital/deposit/hisrec', data);
 }
 
 async function privateCall(path, data = {}, method = 'GET') {
@@ -48,4 +59,4 @@ async function privateCall(path, data = {}, method = 'GET') {
     }
 }
 
-module.exports = { myTrades }
+module.exports = { myTrades, myDeposits }
