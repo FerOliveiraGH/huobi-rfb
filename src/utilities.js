@@ -20,7 +20,7 @@ async function getStarDate(year, month) {
 }
 
 async function getEndDate(year, month) {
-    return new Date(year, month, -1, 23, 59, 59)
+    return new Date(year, month, 0, 23, 59, 59)
 }
 
 async function getNameFile(year, month) {
