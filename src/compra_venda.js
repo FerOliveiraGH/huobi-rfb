@@ -2,14 +2,18 @@ require('dotenv-safe').config();
 
 const Exchange = require('exchange-exterior-rfb').default;
 const { myTrades } = require('./api.js');
+const { getStarDate, getEndDate } = require("./utilities");
 
 
-async function compraVenda(symbol = 'ETH', dateStart = new Date(), dateEnd = new Date()) {
+async function compraVenda(symbol = 'ETH', year = 2022, month = 8) {
     const taxEx = new Exchange({
         exchange_name: 'Binance', // Exchange Name
         exchange_country: 'US', // Exchange CNPJ
         exchange_url: 'https://binance.com' // Exchange URL
     });
+
+    let dateStart = await getStarDate(year, month);
+    let dateEnd = await getEndDate(year, month);
 
     let startDay = dateStart.getDate();
     let endDay = dateEnd.getDate();
