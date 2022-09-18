@@ -13,13 +13,13 @@ async function load() {
 
     let file = "";
 
-    // file += await depositos(year, month);
-    // file += await saques(year, month);
+    file += await depositos(year, month);
+    file += await saques(year, month);
     file += await compraVenda('ETH', year, month);
-    // file += await compraVenda('BTC', year, month);
-    // file += await compraVenda('BUSD', year, month);
-    // file += await permuta('ETH', 'BUSD', year, month)
-    // file += await permuta('BTC', 'BUSD', year, month)
+    file += await compraVenda('BTC', year, month);
+    file += await compraVenda('BUSD', year, month);
+    file += await permuta('ETH', 'BUSD', year, month)
+    file += await permuta('BTC', 'BUSD', year, month)
 
     await saveRfbFile(year, month, file);
 }
