@@ -8,6 +8,6 @@
   "dependencies": {
     "axios": "^0.27.2",
     "dotenv-safe": "^8.2.0",
-    "exchange-exterior-rfb": "feroliveiragh/exchange-exterior-rfb#master"
+    "exchange-exterior-rfb": "feroliveiragh/exchange-exterior-rfb#v1.0.0"
   }
 }
