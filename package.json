@@ -1,5 +1,5 @@
 {
-  "name": "binance-rfb",
+  "name": "huobi-rfb",
   "version": "1.0.0",
   "scripts": {
     "start": "node index"
@@ -7,7 +7,12 @@
   "license": "UNLICENSED",
   "dependencies": {
     "axios": "^0.27.2",
+    "bluebird": "^3.7.2",
+    "crypto-js": "^4.1.1",
+    "csvtojson": "^2.0.10",
     "dotenv-safe": "^8.2.0",
-    "exchange-exterior-rfb": "feroliveiragh/exchange-exterior-rfb#v1.0.0"
+    "exchange-exterior-rfb": "feroliveiragh/exchange-exterior-rfb#v1.0.0",
+    "moment": "^2.29.4",
+    "request": "^2.88.2"
   }
 }

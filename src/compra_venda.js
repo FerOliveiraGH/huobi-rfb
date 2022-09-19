@@ -5,59 +5,49 @@ const { myTrades } = require('./api.js');
 const { getStarDate, getEndDate } = require("./utilities");
 
 
-async function compraVenda(symbol = 'ETH', year = 2022, month = 8) {
+async function compraVenda(fileJson) {
     const taxEx = new Exchange({
-        exchange_name: 'Binance', // Exchange Name
-        exchange_country: 'US', // Exchange CNPJ
-        exchange_url: 'https://binance.com' // Exchange URL
+        exchange_name: 'Huobi', // Exchange Name
+        exchange_country: 'CN', // Exchange Country
+        exchange_url: 'https://www.huobi.com/' // Exchange URL
     });
 
-    let dateStart = await getStarDate(year, month);
-    let dateEnd = await getEndDate(year, month);
+    for (let element of fileJson) {
+        let trade = {};
+        let dateTrade = new Date(element.Time);
+        let symbols = element.Pair.split("/");
 
-    let startDay = dateStart.getDate();
-    let endDay = dateEnd.getDate();
-    let symbol2 = 'BRL'
+        if (symbols[1] !== 'BRL') {
+            continue;
+        }
 
-    for (let i=startDay; i <= endDay; i++) {
-        let dateTradesStart = new Date(dateStart.getFullYear(), dateStart.getMonth(), i, 0, 0, 0);
-        let dateTradesEnd = new Date(dateEnd.getFullYear(), dateEnd.getMonth(), i, 23, 59, 59);
-        dateTradesStart = dateTradesStart.getTime();
-        dateTradesEnd = dateTradesEnd.getTime();
+        let fee = element.Fee.split(symbols[0])
+        fee = fee.length > 1 ? fee[0] : 0
 
-        let pair = symbol.toUpperCase()+symbol2.toUpperCase();
+        if (element.Side === 'Buy') {
+            trade = {
+                date: `${dateTrade.getDate()}/${dateTrade.getMonth()+1}/${dateTrade.getFullYear()}`,
 
-        let response = await myTrades(pair, dateTradesStart, dateTradesEnd);
+                brl_value: element.Total,
+                brl_fees: (element.Price * fee).toFixed(2),
 
-        for (let element of response) {
-            let trade = {};
-            let dateTrade = new Date(element.time);
-
-            if (element.isBuyer) {
-                trade = {
-                    date: `${dateTrade.getDate()}/${dateTrade.getMonth()+1}/${dateTrade.getFullYear()}`,
-
-                    brl_value: element.quoteQty,
-                    brl_fees: element.commission,
-
-                    coin_symbol: symbol,
-                    coin_quantity: element.qty,
-                }
-
-                await taxEx.addBuyOperation(trade);
-            } else if (!element.isBuyer) {
-                trade = {
-                    date: `${dateTrade.getDate()}/${dateTrade.getMonth()+1}/${dateTrade.getFullYear()}`,
-
-                    brl_value: element.quoteQty,
-                    brl_fees: element.commission,
-
-                    coin_symbol: symbol,
-                    coin_quantity: element.qty,
-                }
-
-                await taxEx.addSellOperation(trade);
+                coin_symbol: symbols[0],
+                coin_quantity: element.Amount,
             }
+
+            await taxEx.addBuyOperation(trade);
+        } else if (element.Side === 'Sell') {
+            trade = {
+                date: `${dateTrade.getDate()}/${dateTrade.getMonth()+1}/${dateTrade.getFullYear()}`,
+
+                brl_value: element.Total,
+                brl_fees: (element.Price * fee).toFixed(2),
+
+                coin_symbol: symbols[0],
+                coin_quantity: element.Amount,
+            }
+
+            await taxEx.addSellOperation(trade);
         }
     }
 

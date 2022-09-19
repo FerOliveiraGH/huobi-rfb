@@ -1,5 +1,5 @@
 # Gerador de Arquivo RFB
-Gerador de arquivo RFB [IN 1888](http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?visao=anotado&idAto=100592) para exchange Binance.
+Gerador de arquivo RFB [IN 1888](http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?visao=anotado&idAto=100592) para exchange Huobi.
 
 ## Instalar
 ### [YARN](https://yarnpkg.com/)
@@ -9,7 +9,7 @@ Gerador de arquivo RFB [IN 1888](http://normas.receita.fazenda.gov.br/sijut2cons
 - Comando: `npm install exchanges-rfb --save`
 
 ## Como Usar
-- Crie o arquivo `.env` a partir do `.env.example` e preencha com as suas credências de API da Binance.
+- Cria a partir de um arquivo csv gerado pela Huobi.
 - Alterar o arquivo index.js para os pares que você utiliza.
 - Ajuste o ano e o mês que ira gerar o arquivo.
 - Execute o comando: `yarn start` ou `npm run start` para gerar o arquivo RFB.

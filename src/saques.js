@@ -7,9 +7,9 @@ const { getStarDate, getEndDate } = require("./utilities");
 
 async function saques(year = 2022, month = 8) {
     const taxEx = new Exchange({
-        exchange_name: 'Binance', // Exchange Name
-        exchange_country: 'US', // Exchange CNPJ
-        exchange_url: 'https://binance.com' // Exchange URL
+        exchange_name: 'Huobi', // Exchange Name
+        exchange_country: 'CN', // Exchange Country
+        exchange_url: 'https://www.huobi.com/' // Exchange URL
     });
 
     let dateStart = await getStarDate(year, month);
