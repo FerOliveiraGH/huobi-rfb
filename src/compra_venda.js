@@ -1,15 +1,13 @@
 require('dotenv-safe').config();
 
 const Exchange = require('exchange-exterior-rfb').default;
-const { myTrades } = require('./api.js');
-const { getStarDate, getEndDate } = require("./utilities");
 
 
 async function compraVenda(fileJson) {
     const taxEx = new Exchange({
         exchange_name: 'Huobi', // Exchange Name
         exchange_country: 'CN', // Exchange Country
-        exchange_url: 'https://www.huobi.com/' // Exchange URL
+        exchange_url: 'https://www.huobi.com' // Exchange URL
     });
 
     for (let element of fileJson) {
@@ -51,7 +49,7 @@ async function compraVenda(fileJson) {
         }
     }
 
-   return await taxEx.exportFile();
+   return taxEx.exportFile();
 }
 
 module.exports  = { compraVenda }

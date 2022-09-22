@@ -1,11 +1,8 @@
 require('dotenv-safe').config();
 
-const { depositos } = require("./src/depositos");
-const { saques } = require("./src/saques");
 const { compraVenda } = require("./src/compra_venda");
 const { permuta } = require("./src/permuta");
 const { saveRfbFile } = require("./src/utilities");
-const fs = require("fs/promises");
 const csv = require('csvtojson');
 
 
@@ -19,11 +16,6 @@ async function load() {
     let file = '';
     file += await compraVenda(fileJson);
     file += await permuta(fileJson);
-    // file += await depositos(year, month, fileJson);
-    // file += await saques(year, month);
-    // file += await compraVenda('BTC', year, month);
-    // file += await compraVenda('BUSD', year, month);
-    // file += await permuta('BTC', 'BUSD', year, month)
 
     await saveRfbFile(year, month, file);
 }

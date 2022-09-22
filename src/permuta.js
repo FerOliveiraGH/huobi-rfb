@@ -7,7 +7,7 @@ async function permuta(inputFile) {
     const taxEx = new Exchange({
         exchange_name: 'Huobi', // Exchange Name
         exchange_country: 'CN', // Exchange Country
-        exchange_url: 'https://www.huobi.com/' // Exchange URL
+        exchange_url: 'https://www.huobi.com' // Exchange URL
     });
 
     for (let element of inputFile) {
@@ -48,7 +48,7 @@ async function permuta(inputFile) {
         }
     }
 
-    return await taxEx.exportFile();
+    return taxEx.exportFile();
 }
 
 module.exports = { permuta }
